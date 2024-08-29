@@ -1,14 +1,17 @@
-import { Ball } from "@/components/Ball";
-import { View } from "react-native";
+import { Deck } from "@/components/Deck";
+import { DATA } from "@/constants/Deck";
+import { SafeAreaView, ScrollView } from "react-native";
 
 export default function Index() {
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
       }}
     >
-      <Ball />
-    </View>
+      <ScrollView>
+        <Deck data={DATA} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
