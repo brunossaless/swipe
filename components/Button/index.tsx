@@ -34,7 +34,7 @@ export const Button = ({ onPress, label, ...rest }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View {...props}>
-        <Text>{label}</Text>
+        <Text color={"background"}>{label}</Text>
       </View>
     </TouchableOpacity>
   );

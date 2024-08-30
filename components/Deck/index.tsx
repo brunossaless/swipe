@@ -1,5 +1,5 @@
 import { DATA } from "@/constants/Deck";
-import { Image, View } from "react-native";
+import { Image, PanResponder, View } from "react-native";
 import { Box } from "../Box";
 import { Button } from "../Button";
 import { Text } from "../Text";
@@ -9,6 +9,14 @@ type Props = {
 };
 
 export const Deck = ({ data }: Props) => {
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => {
+      return true;
+    },
+    onPanResponderMove: (event, gestureState) => {},
+    onPanResponderRelease: (event, gestureState) => {},
+  });
+
   return (
     <View style={{ padding: 10 }}>
       {data.length > 1 &&
@@ -20,17 +28,20 @@ export const Deck = ({ data }: Props) => {
             padding="m"
             marginBottom="m"
             gap={"s"}
+            borderRadius="s"
           >
             <Image
-              source={{ uri: "https://picsum.photos/300/200" }}
-              style={{ width: "auto", height: 200 }}
+              source={{
+                uri: `https://picsum.photos/300/200?random=${Math.random()}`,
+              }}
+              style={{ width: "auto", height: 200, borderRadius: 4 }}
             />
             <Text marginBottom="s">I can customize the Card further</Text>
             <Button
               backgroundColor="primary"
               label="View Now!"
               onPress={() => {}}
-              borderRadius="m"
+              borderRadius="s"
               padding="s"
             />
           </Box>
