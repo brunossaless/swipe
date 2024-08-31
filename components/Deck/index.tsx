@@ -1,7 +1,6 @@
 import { DATA } from "@/constants/Deck";
-import { Image, PanResponder, View } from "react-native";
 import { Box } from "../Box";
-import { Button } from "../Button";
+import { CardPhotoText } from "../CardPhotoText";
 import { Text } from "../Text";
 
 type Props = {
@@ -9,43 +8,19 @@ type Props = {
 };
 
 export const Deck = ({ data }: Props) => {
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => {
-      return true;
-    },
-    onPanResponderMove: (event, gestureState) => {},
-    onPanResponderRelease: (event, gestureState) => {},
-  });
-
   return (
-    <View style={{ padding: 10 }}>
-      {data.length > 1 &&
-        data.map((item) => (
-          <Box
-            borderWidth={1}
-            borderColor="primary"
-            key={item.id}
-            padding="m"
-            marginBottom="m"
-            gap={"s"}
-            borderRadius="s"
-          >
-            <Image
-              source={{
-                uri: `https://picsum.photos/300/200?random=${Math.random()}`,
-              }}
-              style={{ width: "auto", height: 200, borderRadius: 4 }}
-            />
-            <Text marginBottom="s">I can customize the Card further</Text>
-            <Button
-              backgroundColor="primary"
-              label="View Now!"
-              onPress={() => {}}
-              borderRadius="s"
-              padding="s"
-            />
-          </Box>
-        ))}
-    </View>
+    <Box padding={"s"} gap={"m"}>
+      <Text
+        color={"text"}
+        fontSize={18}
+        fontWeight={"bold"}
+        paddingBottom={"s"}
+      >
+        Swipe left or right to move elements.
+      </Text>
+      {data.map((item) => (
+        <CardPhotoText key={item.id} id={item.id} text={item.text} />
+      ))}
+    </Box>
   );
 };
